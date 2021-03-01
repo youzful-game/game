@@ -1,0 +1,116 @@
+{
+  "fpsLimit": 60,
+  "backgroundMode": {
+    "enable": true
+  },
+  "particles": {
+    "move": {
+      "attract": {
+        "rotate": {
+          "x": 600,
+          "y": 1200
+        }
+      },
+      "enable": true,
+      "outModes": {
+        "bottom": "out",
+        "left": "out",
+        "right": "out",
+        "top": "out"
+      }
+    },
+    "number": {
+      "density": {
+        "enable": true
+      },
+      "value": 10
+    },
+    "opacity": {
+      "random": {
+        "enable": true
+      },
+      "animation": {
+        "enable": true,
+        "minimumValue": 0.2,
+        "speed": 1
+      }
+    },
+    "rotate": {
+      "random": {
+        "enable": true
+      },
+      "animation": {
+        "enable": true,
+        "speed": 5
+      },
+      "direction": "random"
+    },
+    "shape": {
+      "options": {
+        "images": [
+          {
+            "src": "assets/img/Cylindre1.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/Cylindre2.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/DoublePlanete.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/Etoile1.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/Etoile2.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/Planete1.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/Planete2.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/Planete3.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/Sphere1.png",
+            "width": 32,
+            "height": 32
+          },
+          {
+            "src": "assets/img/Sphere2.png",
+            "width": 32,
+            "height": 32
+          }
+        ]
+      },
+      "type": "image"
+    },
+    "size": {
+      "random": {
+        "enable": true
+      },
+      "value": 200,
+      "animation": {
+        "minimumValue": 0.1,
+        "speed": 40
+      }
+    }
+  }
+}

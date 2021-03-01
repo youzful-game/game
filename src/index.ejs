@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+    <meta name="image" property="og:image" content="assets/img/preview.png">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <title>Youzful Game</title>
+    <!--<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.17.5/dist/tsparticles.min.js" integrity="sha256-Wcr5q//r5yGozjRl+ToXruCoy75vgiApkKsV30aCns8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/js/particles.js"></script>-->
+    <style media='screen' type='text/css'>
+          @font-face {
+            font-family: ka1;
+            src: url('assets/fonts/ka1.ttf');
+            font-weight:400;
+            font-weight:normal;
+          }
+          @font-face {
+            font-family: gotham;
+            src: url('assets/fonts/gotham.otf');
+          }
+    </style>
+    <style>
+      html, body {
+        height: 100%;
+        margin:0;
+        padding:0;
+      }
+
+      body {
+        background: rgb(137,192,1);
+        background: -moz-linear-gradient(45deg, rgba(137,192,1,1) 0%, rgba(0,205,215,1) 100%);
+        background: -webkit-linear-gradient(45deg, rgba(137,192,1,1) 0%, rgba(0,205,215,1) 100%);
+        background: linear-gradient(45deg, rgba(137,192,1,1) 0%, rgba(0,205,215,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#89c001",endColorstr="#00cdd7",GradientType=1);
+      }
+      #tsparticles{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-image: url('');
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+      }
+
+      #borne-container {
+        position: relative;
+        height: 1391px;
+        width: 1180px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #borne-img {
+        display: block;
+        position: relative;
+        top:200px;
+        width: 1163px;
+      }
+    	canvas {
+        display: block;
+		    margin: 0;
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    image-rendering: optimizeSpeed;
+		    image-rendering: -moz-crisp-edges;
+		    image-rendering: -webkit-optimize-contrast;
+		    image-rendering: -o-crisp-edges;
+		    image-rendering: pixelated;
+		    -ms-interpolation-mode: nearest-neighbor;
+			}
+
+			#game-container {
+        top: 0px;
+        bottom: 400px;
+        left: 2px;
+        right: 0px;
+        position:absolute;
+			}
+
+      #logo {
+        display:block;
+        position: absolute;
+        top:20px;
+        left: 20px;
+        width: 15%;
+      }
+
+      @media only screen and (max-width: 1026px) and (orientation: portrait) {
+        #tsparticles {
+          display: none;
+        }
+        #logo {
+          width: 20%;
+        }
+        #borne-img {
+          display: none;
+        }
+        #borne-container {
+          width: 550px;
+          height: 400px;
+          margin-left: auto;
+          margin-right: auto;
+          top: 30vh;
+          position: relative;
+        }
+        #game-container {
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          position: absolute;
+        }
+      }
+
+      @media only screen and (max-width: 1026px) and (orientation: landscape) {
+        #tsparticles {
+          display: none;
+        }
+        #logo {
+          width: 20%;
+        }
+        #borne-img {
+          display: none;
+        }
+        #borne-container {
+          width: 550px;
+          height: 400px;
+          margin-left: auto;
+          margin-right: auto;
+          padding-bottom: 20px;
+          padding-top: 20px;
+          position: relative;
+        }
+        #game-container {
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          position: absolute;
+        }
+      }
+		</style>
+  </head>
+  <body>
+    <div style="font-family:ka1; position:absolute; left:-1000px; visibility:hidden;"></div>
+    <div id="tsparticles"></div>
+    <a href="https://www.youzful-by-ca.fr/"><img id="logo" src="assets/img/logo-youzful.png"></a>
+    <div id="borne-container">
+      <img id="borne-img" src="/assets/img/borne.png">
+      <div id="game-container"></div>
+    </div>
+  </body>
+</html>

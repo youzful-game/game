@@ -1,0 +1,37 @@
+{
+  "name": "youzful-game",
+  "version": "1.0.0",
+  "description": "youzful-game",
+  "main": "src/app.ts",
+  "scripts": {
+    "build": "webpack --config webpack/prod.js",
+    "start": "webpack serve --config webpack/dev.js",
+    "lint": "eslint .",
+    "format": "prettier -w ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youzful-game/game.git"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "5.0.0-alpha.6",
+    "prettier": "^2.0.5",
+    "ts-loader": "^8.0.2",
+    "typescript": "^4.0.5",
+    "webpack": "^5.3.0",
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.1"
+  },
+  "dependencies": {
+    "gameanalytics": "^4.1.4",
+    "phaser": "^3.16.2",
+    "tsparticles": "^1.18.11"
+  }
+}
