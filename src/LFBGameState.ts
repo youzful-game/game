@@ -127,7 +127,7 @@ export default class LFBGameState extends Phaser.Scene {
     }
 
     // Text
-    this.levelText = this.add.text(130, 17, `LEVEL : YOUZFUL WELCOME`, {
+    this.levelText = this.add.text(130, 17, `LEVEL : YOUZFUL INTRO`, {
       fill: "#92cd00",
       fontFamily: 'gotham',
       fontSize: "24px"
@@ -346,7 +346,7 @@ export default class LFBGameState extends Phaser.Scene {
     this.livesText.setText(`LIVES : ${this.lives}`);
 
     // Display current level
-    this.levelText.setText(`LEVEL : YOUZFUL WELCOME`);
+    this.levelText.setText(`LEVEL : YOUZFUL INTRO`);
   }
 
   public makeExplosion(

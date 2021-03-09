@@ -85,7 +85,7 @@ export default class RewardState extends Phaser.Scene {
   private openExternalLink(): void {
     const url = 'https://www.youzful-by-ca.fr/creation-compte/pro';
 
-    const s = window.open(url, '_blank');
+    window.open(url, '_blank');
   }
 
   private startVideoSelectState(): void {

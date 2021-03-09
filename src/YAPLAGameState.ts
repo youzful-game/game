@@ -127,7 +127,7 @@ export default class YAPLAGameState extends Phaser.Scene {
     }
 
     // Text
-    this.levelText = this.add.text(150, 17, `LEVEL : YOUZFUL JEUNES`, {
+    this.levelText = this.add.text(150, 17, `LEVEL : YOUZFUL SITE`, {
       fill: "#92cd00",
       fontFamily: 'gotham',
       fontSize: "24px"
@@ -371,7 +371,7 @@ export default class YAPLAGameState extends Phaser.Scene {
     this.livesText.setText(`LIVES : ${this.lives}`);
 
     // Display current level
-    this.levelText.setText(`LEVEL : YOUZFUL JEUNES`);
+    this.levelText.setText(`LEVEL : YOUZFUL SITE`);
   }
 
   public makeExplosion(
