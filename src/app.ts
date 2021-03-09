@@ -6,9 +6,9 @@ import LFBGameState from "./LFBGameState";
 import YAPLAGameState from "./YAPLAGameState";
 import KLSGameState from "./KLSGameState";
 import BLANKGameState from "./BLANKGameState";
-import JSEGameState from "./JSEGameState";
 import LevelClearedState from "./LevelClearedState";
 import VideoSelectState from "./VideoSelectState";
+import BonusSelectState from "./BonusSelectState";
 import HelpState from "./HelpState";
 import InitState from "./InitState";
 import MenuState from "./MenuState";
@@ -33,12 +33,12 @@ const config: Phaser.Types.Core.GameConfig = {
     YAPLAGameState,
     KLSGameState,
     BLANKGameState,
-    JSEGameState,
     LevelClearedState,
     RewardState,
     HelpState,
     GameOverState,
     VideoSelectState,
+    BonusSelectState,
   ],
   type: Phaser.AUTO,
   width: 550,

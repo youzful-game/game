@@ -31,7 +31,7 @@ module.exports = {
     "max-statements": 0,
     "sort-keys": 0,
     "complexity": 0,
-
+    "no-lonely-if": 0,
     "no-console": ["warn", { allow: ["warn"] }],
     "max-lines-per-function": ["error", 200],
     "@typescript-eslint/no-unsafe-member-access": 0,

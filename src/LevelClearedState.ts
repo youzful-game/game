@@ -1,5 +1,4 @@
 import * as Phaser from "phaser";
-import Lava from "./Lava";
 import { EGAProgressionStatus, GameAnalytics } from 'gameanalytics';
 
 const sceneConfig: Phaser.Types.Scenes.SettingsConfig = {

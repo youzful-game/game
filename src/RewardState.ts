@@ -14,13 +14,14 @@ const sceneConfig: Phaser.Types.Scenes.SettingsConfig = {
 };
 
 export default class RewardState extends Phaser.Scene {
-  private sfxMusic!: Phaser.Sound.BaseSound;
 
   private musicOn: boolean = true;
 
   private startup: string = "";
 
   private backToVideoSelectState: boolean = false;
+
+  private backToBonusSelectState: boolean = false;
 
   private lfbWon: boolean = false;
 
@@ -34,16 +35,18 @@ export default class RewardState extends Phaser.Scene {
     super(sceneConfig);
   }
 
-  public init({ musicOn, startup, backToVideoSelectState, lfbWon, yaplaWon, klsWon, blankWon }: { musicOn: boolean, startup: string, backToVideoSelectState: boolean, lfbWon: boolean, yaplaWon: boolean, klsWon: boolean, blankWon: boolean }): void {
+  public init({ musicOn, startup, backToVideoSelectState, backToBonusSelectState, lfbWon, yaplaWon, klsWon, blankWon }: { musicOn: boolean, startup: string, backToVideoSelectState: boolean, backToBonusSelectState: boolean, lfbWon: boolean, yaplaWon: boolean, klsWon: boolean, blankWon: boolean }): void {
     this.musicOn = musicOn;
     this.startup = startup;
     this.backToVideoSelectState = backToVideoSelectState;
+    this.backToBonusSelectState = backToBonusSelectState;
     this.lfbWon = lfbWon;
     this.yaplaWon = yaplaWon;
     this.klsWon = klsWon;
     this.blankWon = blankWon;
   }
 
+  // eslint-disable no-lonely-if
   public create(): void {
 
     GameAnalytics.addBusinessEvent("EUR", 1, "Reward", "Video", this.startup);
@@ -53,45 +56,48 @@ export default class RewardState extends Phaser.Scene {
     vid.play(false);
     vid.on('complete', () => this.startLevelsState(), this);
     vid.setPaused(false);
+    // Go to external site
+    const buttonLink = this.add.sprite(550/2, 375, "img_button_external_link");
+    buttonLink.setInteractive({ useHandCursor: true });
+    buttonLink.on("pointerdown", () => this.openExternalLink(), this);
 
     if (this.backToVideoSelectState) {
       // Back to video select
-      const buttonPlay = this.add.sprite(550 / 2, 375, "img_button_back");
+      const buttonPlay = this.add.sprite(500, 375, "img_button_back");
       buttonPlay.setInteractive({ useHandCursor: true });
       buttonPlay.on("pointerdown", () => this.startVideoSelectState(), this);
     } else {
-      // Back to levels
-      const buttonPlay = this.add.sprite(550 / 2, 375, "img_button_back");
-      buttonPlay.setInteractive({ useHandCursor: true });
-      buttonPlay.on("pointerdown", () => this.startLevelsState(), this);
+      if (this.backToBonusSelectState) {
+        // Back to bonus select
+        const buttonPlay = this.add.sprite(500, 375, "img_button_back");
+        buttonPlay.setInteractive({ useHandCursor: true });
+        buttonPlay.on("pointerdown", () => this.startBonusSelectState(), this);
+      } else {
+        // Back to levels
+        const buttonPlay = this.add.sprite(500, 375, "img_button_back");
+        buttonPlay.setInteractive({ useHandCursor: true });
+        buttonPlay.on("pointerdown", () => this.startLevelsState(), this);
+      }
     }
+  }
+  // eslint-enable
 
-    this.initAudio();
+  private openExternalLink(): void {
+    const url = 'https://www.youzful-by-ca.fr/creation-compte/pro';
+
+    const s = window.open(url, '_blank');
   }
 
   private startVideoSelectState(): void {
-    if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
-      this.sfxMusic.stop();
-      this.scene.start("VideoSelectState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
-    }
+    this.scene.start("VideoSelectState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+  }
+
+  private startBonusSelectState(): void {
+    this.scene.start("BonusSelectState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
   }
 
   private startLevelsState(): void {
-    if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
-      this.sfxMusic.stop();
-      this.scene.start("LevelsState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
-    }
+    this.scene.start("LevelsState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
   }
 
-
-  private initAudio(): void {
-    if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
-      if (this.musicOn) {
-        this.sfxMusic.mute = false;
-      } else {
-        this.sfxMusic.mute = true;
-      }
-      this.sfxMusic.setLoop(true);
-    }
-  }
 }

@@ -1,5 +1,4 @@
 import * as Phaser from "phaser";
-import Lava from "./Lava";
 
 const sceneConfig: Phaser.Types.Scenes.SettingsConfig = {
   active: false,
@@ -47,7 +46,7 @@ export default class HelpState extends Phaser.Scene {
       callback: () => {
         this.add.image(550/2, 250, "help_text_2");
       },
-      delay: 1000,
+      delay: 2000,
       loop: false
     });
 
@@ -55,7 +54,7 @@ export default class HelpState extends Phaser.Scene {
       callback: () => {
         this.startLevelsState();
       },
-      delay: 2000,
+      delay: 4000,
       loop: false
     });
 
@@ -82,40 +81,22 @@ export default class HelpState extends Phaser.Scene {
     this.scene.start("LevelsState", { musicOn: this.musicOn, lfbWon: false, yaplaWon: false, klsWon: false, blankWon: false });
   }
 
-  private initAudio(): void {
-    // Audio
-    this.sfxMusic = this.sound.add("music_levels");
-    this.sfxMusic.play();
-    if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
-      if (this.musicOn) {
-        this.sfxMusic.mute = false;
-      } else {
-        this.sfxMusic.mute = true;
-      }
-      this.sfxMusic.setLoop(true);
-    }
-  }
-
   private toggleAudio(): void {
-    if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
-      if (this.musicOn) {
-        this.sfxMusic.mute = true;
-        this.musicOn = false;
-        if (this.buttonSoundOn instanceof Phaser.GameObjects.Sprite) {
-          this.buttonSoundOn.visible = false;
-        }
-        if (this.buttonSoundOff instanceof Phaser.GameObjects.Sprite) {
-          this.buttonSoundOff.visible = true;
-        }
-      } else {
-        this.sfxMusic.mute = false;
-        this.musicOn = true;
-        if (this.buttonSoundOn instanceof Phaser.GameObjects.Sprite) {
-          this.buttonSoundOn.visible = true;
-        }
-        if (this.buttonSoundOff instanceof Phaser.GameObjects.Sprite) {
-          this.buttonSoundOff.visible = false;
-        }
+    if (this.musicOn) {
+      this.musicOn = false;
+      if (this.buttonSoundOn instanceof Phaser.GameObjects.Sprite) {
+        this.buttonSoundOn.visible = false;
+      }
+      if (this.buttonSoundOff instanceof Phaser.GameObjects.Sprite) {
+        this.buttonSoundOff.visible = true;
+      }
+    } else {
+      this.musicOn = true;
+      if (this.buttonSoundOn instanceof Phaser.GameObjects.Sprite) {
+        this.buttonSoundOn.visible = true;
+      }
+      if (this.buttonSoundOff instanceof Phaser.GameObjects.Sprite) {
+        this.buttonSoundOff.visible = false;
       }
     }
   }

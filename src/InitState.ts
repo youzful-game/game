@@ -80,13 +80,15 @@ export default class InitState extends Phaser.Scene {
     this.load.image("img_button_play_KLS", "assets/img/kls.png");
     this.load.image("img_button_play_BLANK", "assets/img/blank.png");
     this.load.image("img_button_play_JSE", "assets/img/jse.png");
-    this.load.image("img_button_videos", "assets/img/img_button_videos.png");
+    this.load.image("img_button_bonus", "assets/img/img_button_bonus.png");
     this.load.image("img_button_try_again", "assets/img/try_again.png");
     this.load.image("sound_on", "assets/img/sound_on.png");
     this.load.image("sound_off", "assets/img/sound_off.png");
     this.load.image("check", "assets/img/check.png");
     this.load.image("help_text_1", "assets/img/help_text_1.png");
     this.load.image("help_text_2", "assets/img/help_text_2.png");
+    this.load.image("img_button_all_videos", "assets/img/img_button_all_videos.png");
+    this.load.image("img_button_external_link", "assets/img/img_button_external_link.png");
 
     this.load.image("img_background", "assets/img/back.png");
     this.load.image("img_help", "assets/img/help.png");
@@ -95,6 +97,7 @@ export default class InitState extends Phaser.Scene {
     this.load.image("img_title", "assets/img/title.png");
     this.load.image("img_levels_title", "assets/img/levels_title.png");
     this.load.image("img_level_cleared", "assets/img/level_cleared.png");
+    this.load.image("img_bonus_title", "assets/img/img_bonus_title.png");
     this.load.image("img_videos_title", "assets/img/img_videos_title.png");
 
     // Bricks

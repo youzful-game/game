@@ -1,9 +1,8 @@
 import * as Phaser from "phaser";
-import { EGAProgressionStatus, GameAnalytics } from 'gameanalytics';
 
 const sceneConfig: Phaser.Types.Scenes.SettingsConfig = {
   active: false,
-  key: "LevelsState",
+  key: "BonusSelectState",
   physics: {
     arcade: {
       debug: false,
@@ -13,10 +12,8 @@ const sceneConfig: Phaser.Types.Scenes.SettingsConfig = {
   },
 };
 
-export default class LevelsState extends Phaser.Scene {
+export default class BonusSelectState extends Phaser.Scene {
   private sfxMusic!: Phaser.Sound.BaseSound;
-
-  private musicOn: boolean;
 
   private lfbWon: boolean = false;
 
@@ -25,6 +22,8 @@ export default class LevelsState extends Phaser.Scene {
   private klsWon: boolean = false;
 
   private blankWon: boolean = false;
+
+  private musicOn: boolean = true;
 
   private buttonSoundOn: Phaser.GameObjects.Sprite;
 
@@ -47,65 +46,32 @@ export default class LevelsState extends Phaser.Scene {
     this.add.image(550 / 2, 400 / 2, "img_background");
 
     // Title
-    this.add.image(550 / 2, 100, "img_levels_title");
+    this.add.image(550 / 2, 100, "img_bonus_title");
 
     // LFB level button
     const buttonPlayLFB = this.add.sprite(550 / 2, 170, "img_button_play_LFB");
     buttonPlayLFB.setInteractive({ useHandCursor: true });
-    buttonPlayLFB.on("pointerdown", () => this.startLFBGameState(), this);
-    const checkLFB = this.add.sprite(450, 170, "check");
-    if (this.lfbWon) {
-      checkLFB.visible = true;
-    } else {
-      checkLFB.visible = false;
-    }
+    buttonPlayLFB.on("pointerdown", () => this.startLFBRewardState(), this);
 
     // Yapla level button
     const buttonPlayYAPLA = this.add.sprite(550 / 2, 215, "img_button_play_YAPLA");
     buttonPlayYAPLA.setInteractive({ useHandCursor: true });
-    buttonPlayYAPLA.on("pointerdown", () => this.startYAPLAGameState(), this);
-    const checkYAPLA = this.add.sprite(450, 215, "check");
-    if (this.yaplaWon) {
-      checkYAPLA.visible = true;
-    } else {
-      checkYAPLA.visible = false;
-    }
+    buttonPlayYAPLA.on("pointerdown", () => this.startYAPLARewardState(), this);
 
     // KLS level button
     const buttonPlayKLS = this.add.sprite(550 / 2, 260, "img_button_play_KLS");
     buttonPlayKLS.setInteractive({ useHandCursor: true });
-    buttonPlayKLS.on("pointerdown", () => this.startKLSGameState(), this);
-    const checkKLS = this.add.sprite(450, 260, "check");
-    if (this.klsWon) {
-      checkKLS.visible = true;
-    } else {
-      checkKLS.visible = false;
-    }
+    buttonPlayKLS.on("pointerdown", () => this.startKLSRewardState(), this);
 
     // BLANK level button
     const buttonPlayBLANK = this.add.sprite(550 / 2, 305, "img_button_play_BLANK");
     buttonPlayBLANK.setInteractive({ useHandCursor: true });
-    buttonPlayBLANK.on("pointerdown", () => this.startBLANKGameState(), this);
-    const checkBLANK = this.add.sprite(450, 305, "check");
-    if (this.blankWon) {
-      checkBLANK.visible = true;
-    } else {
-      checkBLANK.visible = false;
-    }
+    buttonPlayBLANK.on("pointerdown", () => this.startBLANKRewardState(), this);
 
-    if ( this.lfbWon || this.yaplaWon || this.klsWon || this.blankWon) {
-      // Videos button
-      const buttonSeeVideos = this.add.sprite(100, 355, "img_button_all_videos");
-      buttonSeeVideos.setInteractive({ useHandCursor: true });
-      buttonSeeVideos.on("pointerdown", () => this.startVideoSelectState(), this);
-    }
-
-    if ( this.lfbWon && this.yaplaWon && this.klsWon && this.blankWon) {
-      // Videos button
-      const buttonSeeVideos = this.add.sprite(450, 355, "img_button_bonus");
-      buttonSeeVideos.setInteractive({ useHandCursor: true });
-      buttonSeeVideos.on("pointerdown", () => this.startBonusSelectState(), this);
-    }
+    // Back to levels
+    const buttonPlay = this.add.sprite(550 / 2, 350, "img_button_back");
+    buttonPlay.setInteractive({ useHandCursor: true });
+    buttonPlay.on("pointerdown", () => this.startLevelsState(), this);
 
     // Sound button
     this.buttonSoundOn = this.add.sprite(480, 30, "sound_on");
@@ -127,49 +93,38 @@ export default class LevelsState extends Phaser.Scene {
     this.initAudio();
   }
 
-  private startVideoSelectState(): void {
+  private startLFBRewardState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      this.scene.start("VideoSelectState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "lfb", backToVideoSelectState: false, backToBonusSelectState: true, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 
-  private startBonusSelectState(): void {
+  private startYAPLARewardState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      this.scene.start("BonusSelectState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "yapla", backToVideoSelectState: false, backToBonusSelectState: true, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 
-  private startLFBGameState(): void {
+  private startKLSRewardState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      GameAnalytics.addProgressionEvent(EGAProgressionStatus.Start, "lfb");
-      this.scene.start("LFBGameState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "kls", backToVideoSelectState: false, backToBonusSelectState: true, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 
-  private startYAPLAGameState(): void {
+  private startBLANKRewardState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      GameAnalytics.addProgressionEvent(EGAProgressionStatus.Start, "yapla");
-      this.scene.start("YAPLAGameState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "blank", backToVideoSelectState: false, backToBonusSelectState: true, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 
-  private startKLSGameState(): void {
+  private startLevelsState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      GameAnalytics.addProgressionEvent(EGAProgressionStatus.Start, "kls");
-      this.scene.start("KLSGameState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
-    }
-  }
-
-  private startBLANKGameState(): void {
-    if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
-      this.sfxMusic.stop();
-      GameAnalytics.addProgressionEvent(EGAProgressionStatus.Start, "blank");
-      this.scene.start("BLANKGameState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("LevelsState", { musicOn: this.musicOn, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 

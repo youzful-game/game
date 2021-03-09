@@ -25,6 +25,10 @@ export default class VideoSelectState extends Phaser.Scene {
 
   private musicOn: boolean = true;
 
+  private buttonSoundOn: Phaser.GameObjects.Sprite;
+
+  private buttonSoundOff: Phaser.GameObjects.Sprite;
+
   public constructor() {
     super(sceneConfig);
   }
@@ -92,28 +96,28 @@ export default class VideoSelectState extends Phaser.Scene {
   private startLFBRewardState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "lfb", backToVideoSelectState: true, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "lfb", backToVideoSelectState: true, backToBonusSelectState: false, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 
   private startYAPLARewardState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "yapla", backToVideoSelectState: true, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "yapla", backToVideoSelectState: true, backToBonusSelectState: false, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 
   private startKLSRewardState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "kls", backToVideoSelectState: true, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "kls", backToVideoSelectState: true, backToBonusSelectState: false, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 
   private startBLANKRewardState(): void {
     if (this.sfxMusic instanceof Phaser.Sound.WebAudioSound) {
       this.sfxMusic.stop();
-      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "blank", backToVideoSelectState: true, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
+      this.scene.start("RewardState", { musicOn: this.musicOn, startup: "blank", backToVideoSelectState: true, backToBonusSelectState: false, lfbWon: this.lfbWon, yaplaWon: this.yaplaWon, klsWon: this.klsWon, blankWon: this.blankWon });
     }
   }
 
